@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VR FPS</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   -
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="./shoot.js"></script>
+    
+  </head>
+  <body>
+    <a-scene id="scene">
+
+      <!--Assets-->
+      <a-assets>
+      <a-asset-item id = "shooter" src = "./models/shooter/gun.gltf"></a-asset-item>
+      </a-assets>
+      
+      <!--Light-->
+      <a-entity light="type: ambient; color: yellow; intensity:0.5"></a-entity>
+
+      <!--Camera and Cursor-->
+      <a-entity
+        id="camera"
+        camera
+        position="0 1.6 0"
+        wasd-controls
+        look-controls="pointerLockEnabled: false"        
+      >
+      <a-entity id = "weapon" gltf-model = "#shooter" position = "0 -4.4 3" rotation = "0 180 0" scale = "0.35 1 1"></a-entity>
+      <a-entity id = "sound1" sound = "src:#shoot;poolSize:2;autoplay:false;volume:1;loop:false"></a-entity>    
+        <a-cursor></a-cursor>        
+      </a-entity>
+
+      <!--Bullets-->
+      <a-entity bullets></a-entity>
+
+      <!--Ground-->
+      <a-plane
+        id="ground"
+        repeat="5 5"
+        position="0 1 0"
+        rotation="-90 0 0"
+        height="200"
+        width="200"
+        color="lightblue"
+        static-body
+        visible="true"
+      >
+      </a-plane>
+
+      <!--Boxes-->
+      <a-box id = "box1" position = "-2 1.5 -10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box2" position = "0 1.5 -10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box3" position = "2 1.5 -10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box4" position = "-1 2.5 -10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box5" position = "1 2.5 -10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box6" position = "0 3.5 -10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+
+      <a-box id = "box7" position = "-2 1.5 10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box8" position = "0 1.5 10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box9" position = "2 1.5 10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box10" position = "-1 2.5 10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box11" position = "1 2.5 10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+      <a-box id = "box12" position = "0 3.5 10" depth = "1" height = "1" width = "1" static-body src = "./models/shooter/boxtexture1.jpg"></a-box>
+
+      <a-box id = "wall1" position = "-20 1.5 -20" color = "red" depth = "1" height = "70" width = "10" static-body></a-box>
+      <a-box id = "wall2" position = "0 1.5 -20" color = "red" depth = "1" height = "70" width = "10" static-body></a-box>
+      <a-box id = "wall3" position = "20 1.5 -20" color = "red" depth = "1" height = "70" width = "10" static-body></a-box>
+      <a-box id = "wall4" position = "-10 1.5 -20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      <a-box id = "wall5" position = "10 1.5 -20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      <a-box id = "wall6" position = "-30 1.5 -20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      <a-box id = "wall7" position = "30 1.5 -20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      
+      <a-box id = "wall8" position = "-20 1.5 20" color = "red" depth = "1" height = "70" width = "10" static-body></a-box>
+      <a-box id = "wall9" position = "0 1.5 20" color = "red" depth = "1" height = "70" width = "10" static-body></a-box>
+      <a-box id = "wall10" position = "20 1.5 20" color = "red" depth = "1" height = "70" width = "10" static-body></a-box>
+      <a-box id = "wall11" position = "-10 1.5 20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      <a-box id = "wall12" position = "10 1.5 20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      <a-box id = "wall13" position = "-30 1.5 20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      <a-box id = "wall14" position = "30 1.5 20" color = "red" depth = "1" height = "70" width = "10" opacity = "0.5"></a-box>
+      
+      <a-box id = "wall15" position = "-30 1.5 -20" color = "red" depth = "10" height = "70" width = "1" static-body></a-box>
+      <a-box id = "wall16" position = "-30 1.5 0" color = "red" depth = "10" height = "70" width = "1" static-body></a-box>
+      <a-box id = "wall17" position = "-30 1.5 20" color = "red" depth = "10" height = "70" width = "1" static-body></a-box>
+      <a-box id = "wall18" position = "-30 1.5 -10" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+      <a-box id = "wall19" position = "-30 1.5 10" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+      <a-box id = "wall20" position = "-30 1.5 -30" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+      <a-box id = "wall21" position = "-30 1.5 30" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+
+      <a-box id = "wall22" position = "30 1.5 -20" color = "red" depth = "10" height = "70" width = "1" static-body></a-box>
+      <a-box id = "wall23" position = "30 1.5 0" color = "red" depth = "10" height = "70" width = "1" static-body></a-box>
+      <a-box id = "wall24" position = "30 1.5 20" color = "red" depth = "10" height = "70" width = "1" static-body></a-box>
+      <a-box id = "wall25" position = "30 1.5 -10" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+      <a-box id = "wall26" position = "30 1.5 10" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+      <a-box id = "wall27" position = "30 1.5 -30" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+      <a-box id = "wall28" position = "30 1.5 30" color = "red" depth = "10" height = "70" width = "1" opacity = "0.5"></a-box>
+    
+      <a-box id = "roof" position = "0 50 0" color = "red" depth = "100" height = "1" width = "100" static-body></a-box>
+    </a-scene>
+    </a-scene>
+  </body>
+</html>
